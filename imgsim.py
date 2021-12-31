@@ -41,3 +41,9 @@ def imagepair_similarity(img1, img2):
     hist2 = compute_grayscale_histogram(cvimg2)
 
     return 1 - cosine(hist1, hist2)
+
+
+
+# Other metrics:
+# https://towardsdatascience.com/measuring-similarity-in-two-images-using-python-b72233eb53c6
+# https://github.com/andrewekhalel/sewar
