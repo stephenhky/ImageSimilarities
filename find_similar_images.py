@@ -1,4 +1,5 @@
 
+import os
 from argparse import ArgumentParser
 from PIL import Image
 from operator import itemgetter
@@ -32,7 +33,8 @@ if __name__ == '__main__':
         resultdict[imagepath] = value
 
     for imgpath, value in sorted(resultdict.items(), key=itemgetter(1), reverse=eudist):
-        print('{}: {}'.format(imgpath, value))
+        basefilename = os.path.basename(imgpath)
+        print('{}: {}'.format(basefilename, value))
 
 
 
