@@ -23,22 +23,22 @@ def compute_grayscale_histogram(cvimg, normalize=False):
         return hist
 
 
-def imagepair_distance(img1, img2, normalize=False):
-    cvimg1 = convert_PIL_to_opencv(img1)
-    cvimg2 = convert_PIL_to_opencv(img2)
+def get_histvector_from_PIL(pilimg, normalize=False):
+    cvimg = convert_PIL_to_opencv(pilimg)
+    histvec = compute_grayscale_histogram(cvimg, normalize=normalize)
+    return histvec
 
-    hist1 = compute_grayscale_histogram(cvimg1, normalize=normalize)
-    hist2 = compute_grayscale_histogram(cvimg2, normalize=normalize)
+
+def imagepair_distance(img1, img2, normalize=False):
+    hist1 = get_histvector_from_PIL(img1, normalize=normalize)
+    hist2 = get_histvector_from_PIL(img2, normalize=normalize)
 
     return euclidean(hist1, hist2)
 
 
 def imagepair_similarity(img1, img2):
-    cvimg1 = convert_PIL_to_opencv(img1)
-    cvimg2 = convert_PIL_to_opencv(img2)
-
-    hist1 = compute_grayscale_histogram(cvimg1)
-    hist2 = compute_grayscale_histogram(cvimg2)
+    hist1 = get_histvector_from_PIL(img1)
+    hist2 = get_histvector_from_PIL(img2)
 
     return 1 - cosine(hist1, hist2)
 
