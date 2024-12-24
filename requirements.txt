@@ -2,3 +2,5 @@ numpy
 scipy
 opencv-python
 opencv-contrib-python
+pillow
+tqdm

@@ -1,9 +1,9 @@
 
 import os
 from argparse import ArgumentParser
-from PIL import Image
 from operator import itemgetter
 
+from PIL import Image
 from tqdm import tqdm
 
 from imgutils import imagepair_distance, imagepair_similarity
