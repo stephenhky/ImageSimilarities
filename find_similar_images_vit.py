@@ -33,10 +33,10 @@ def get_vit_image_model():
 
 
 def get_image_embedding(image, model, image_processor):
-    # inputs = image_processor(images=image, return_tensors='pt')
-    # outputs = model(**inputs)
-    inputs = image_processor(images=image)
-    outputs = model(pixel_values=torch.FloatTensor(inputs['pixel_values']))
+    inputs = image_processor(images=image, return_tensors='pt')
+    outputs = model(**inputs)
+    # inputs = image_processor(images=image)
+    # outputs = model(pixel_values=torch.FloatTensor(inputs['pixel_values']))
     return outputs.pooler_output.detach().numpy()[0]
 
 
@@ -62,6 +62,6 @@ if __name__ == '__main__':
         image_processor, model = get_hiera_image_model()
     result_dict = go_through_images(image, args.imagepaths, model, image_processor)
 
-    for imgpath, value in sorted(result_dict.items(), key=itemgetter(1), reverse=True):
+    for imgpath, value in sorted(result_dict.items(), key=itemgetter(1), reverse=True)[-args.n:]:
         basefilename = os.path.basename(imgpath)
         print('{}: {}'.format(basefilename, value))
