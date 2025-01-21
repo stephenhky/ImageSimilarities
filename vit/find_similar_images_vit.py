@@ -4,7 +4,6 @@ from argparse import ArgumentParser
 from operator import itemgetter
 
 from PIL import Image
-import torch
 from tqdm import tqdm
 from scipy.spatial.distance import cosine
 from transformers import AutoImageProcessor, HieraModel, ViTModel
